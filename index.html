@@ -6,11 +6,11 @@
     }
 </style>
 <p>protocole RSA</p>
-<p>exeample de nombre premier {2, 3, 5, 7, 11, 13, 17, 19, 23, 29…}</p>
-<br>
+<h2>création des clé</h2>
 <p>le recepteur alice doi créer une clée privée</p>
 <br>
 <p>1 - chois de p et q de grand nombre premier conus uniquement du récépteur 100 chiffres chacun</p>
+<p>exeample de nombre premier {2, 3, 5, 7, 11, 13, 17, 19, 23, 29…}</p>
 <br>
 <label for="name">p</label>
 <input type="text" id="p" name="name">
@@ -32,16 +32,28 @@
     appelé exposant de chiffrement</p>
 <label for="name">e</label>
 <input type="text" id="e" name="name">
-<button id="bouton_e">changer e</button> <p>e = <span id="afichage_e"></span></p>
+<button id="bouton_e">changer e</button>
+<p>e = <span id="afichage_e"></span></p>
+<p>pgcd de e et φ(n) = <span id="afichage_pgcden"></span> (ce nombre doi etre de 1 car e premier avec φ(n) )</p>
 <br>
-<p>et calcule un nombre criptographique publique d qui satisfait l'equation e·d mod ((p-1)(q-1) = 1 </p>
-<p> avec p, q et d on calcule la master clé privé e, e est un entier premier avec (p – 1) × (q – 1) </p>
-<p>on peut suprimer p et q ici</p>
-<p>N et d sont publique et e est privée</p>
+<p>Calcule un nombre criptographique publique d qui satisfait l'equation e·d mod ((p-1)(q-1) = 1 </p>
+<p>d est trouver avec l'algoritm étendu d'euclide avec e et φ(n) en paramètre</p>
+<p>d = <span id="afichage_d"></span></p>
+<br>
+<p>clé publique: n = <span id="afichage_n2"></span> et e = <span id="afichage_e2"></span></p>
+<p>clé privée d = <span id="afichage_d2"></span></p>
+<p>on peut suprimer p et q et φ(n)</p>
+<br>
+<h2>chifrement</h2>
 <p>bob veut envoyer un message a alice</p>
-<p>il prend son message m (sou forme de nombre)</p>
-<p>il fait m^d modulo N</p>
-<p></p>
+<p>il prend son message m et le numérise (sou forme de entier), m vérifie 0 <= m < n</p>
+<label for="name">m</label>
+<input type="text" id="m" name="name">
+<button id="bouton_m">changer m</button>
+<p>m = <span id="afichage_m"></span></p>
+<p>il fait m^d modulo n pour avoir le message chifré x</p>
+<p>x = <span id="afichage_x"></span></p>
+
 
 <!-- /* dechifrage */
 /* la clef d de déchiffrage */
