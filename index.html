@@ -1,0 +1,55 @@
+<h1>test du chifrement rsa</h1>
+<script src="script.js"></script>
+<style>
+    p{
+        margin : 3px;
+    }
+</style>
+<p>protocole RSA</p>
+<p>exeample de nombre premier {2, 3, 5, 7, 11, 13, 17, 19, 23, 29…}</p>
+<br>
+<p>le recepteur alice doi créer une clée privée</p>
+<br>
+<p>1 - chois de p et q de grand nombre premier conus uniquement du récépteur 100 chiffres chacun</p>
+<br>
+<label for="name">p</label>
+<input type="text" id="p" name="name">
+<button id="bouton_p">changer p</button><p>p = <span id="afichage_p"></span></p>
+<br>
+
+<label for="name">q</label>
+<input type="text" id="q" name="name">
+<button id="bouton_q">changer q</button> <p>q = <span id="afichage_q"></span></p>
+<br>
+<p>2 - p . q  = n, n est publique</p>
+<button id="bouton_n">calculer p*q</button>
+<p>n = <span id="afichage_n"></span></p>
+<br>
+<p>3 - calculer φ(n) = (p - 1)(q - 1)   (c'est la valeur de l'indicatrice d'Euler en n)</p>
+<p>φ(n) = <span id="afichage_fiN"></span></p>
+<br>
+<p>4 - choisir un entier naturel e premier avec φ(n)    (pgcd  de (e,φ(n)) = 1) et strictement inférieur à φ(n), 
+    appelé exposant de chiffrement</p>
+<label for="name">e</label>
+<input type="text" id="e" name="name">
+<button id="bouton_e">changer e</button> <p>e = <span id="afichage_e"></span></p>
+<br>
+<p>et calcule un nombre criptographique publique d qui satisfait l'equation e·d mod ((p-1)(q-1) = 1 </p>
+<p> avec p, q et d on calcule la master clé privé e, e est un entier premier avec (p – 1) × (q – 1) </p>
+<p>on peut suprimer p et q ici</p>
+<p>N et d sont publique et e est privée</p>
+<p>bob veut envoyer un message a alice</p>
+<p>il prend son message m (sou forme de nombre)</p>
+<p>il fait m^d modulo N</p>
+<p></p>
+
+<!-- /* dechifrage */
+/* la clef d de déchiffrage */
+/* alice decode le message m^d en efectuant ((m^d)^e) pour avoir m  */
+
+/* exeample */
+/* p=3 q=5*/
+/* n = p . q = 15 */
+/* (p-1)×(q-1) = 8 */
+/* Dans ce cas, e = 3 est premier avec 8 */
+/* On peut choisir d = 3 puisque e . d = 3.3 = 9 = 8.1 + 1. */ -->
