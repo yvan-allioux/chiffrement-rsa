@@ -79,28 +79,65 @@ document.addEventListener("DOMContentLoaded", function(event) {
       document.querySelector('#afichage_d2').innerHTML = d;
     };
 
+    /* chiffrement */
 
-
-    /* calcul de m avec le formulaire */
-    const button_m = document.querySelector('#bouton_m');
-    button_m.onclick = function(){
-      var input_m = document.querySelector('#m');
-      m = parseInt(input_m.value);
-      document.querySelector('#afichage_m').innerHTML = m;
-      x = Math.pow(m, e) % n;
-      document.querySelector('#afichage_x').innerHTML = x;
+    /* changement de m */
+    const button_cm = document.querySelector('#bouton_cm');
+    button_cm.onclick = function(){
+      var input_cm = document.querySelector('#cm');
+      cm = parseInt(input_cm.value);
+      document.querySelector('#afichage_cm').innerHTML = cm;
+    };
+    /* changement de e */
+    const button_ce = document.querySelector('#bouton_ce');
+    button_ce.onclick = function(){
+      var input_ce = document.querySelector('#ce');
+      ce = parseInt(input_ce.value);
+      document.querySelector('#afichage_ce').innerHTML = ce;
+    };
+    /* changement de n*/
+    const button_cn = document.querySelector('#bouton_cn');
+    button_cn.onclick = function(){
+      var input_cn = document.querySelector('#cn');
+      cn = parseInt(input_cn.value);
+      document.querySelector('#afichage_cn').innerHTML = cn;
+    };
+    /*chiffrement*/
+    const bouton_cx = document.querySelector('#bouton_cx');
+    bouton_cx.onclick = function(){
+      cx = Math.pow(cm, ce) % cn;
+      document.querySelector('#afichage_cx').innerHTML = cx;
     };
 
 
     
-    /* calcul de m avec le formulaire */
-    const button_x2 = document.querySelector('#bouton_x2');
-    button_x2.onclick = function(){
-      var input_x2 = document.querySelector('#x2');
-      x2 = parseInt(input_x2.value);
-      document.querySelector('#afichage_x2').innerHTML = x2;
-      x3 = Math.pow(x, d) % n;
-      document.querySelector('#afichage_x3').innerHTML = x3;
+    /*dechifrement */
+    /* changement de x */
+    const bouton_dx = document.querySelector('#bouton_dx');
+    bouton_dx.onclick = function(){
+      var input_dx = document.querySelector('#dx');
+      dx = parseInt(input_dx.value);
+      document.querySelector('#afichage_dx').innerHTML = dx;
+    };
+    /* changement de dd */
+    const button_dd = document.querySelector('#bouton_dd');
+    button_dd.onclick = function(){
+      var input_dd = document.querySelector('#dd');
+      dd = parseInt(input_dd.value);
+      document.querySelector('#afichage_dd').innerHTML = dd;
+    };
+    /* changement de dn*/
+    const button_dn = document.querySelector('#bouton_dn');
+    button_dn.onclick = function(){
+      var input_dn = document.querySelector('#dn');
+      dn = parseInt(input_dn.value);
+      document.querySelector('#afichage_dn').innerHTML = dn;
+    };
+    /*déchiffrement*/
+    const bouton_dx2 = document.querySelector('#bouton_dx2');
+    bouton_dx2.onclick = function(){
+      dx2 = Math.pow(dx, dd) % dn;
+      document.querySelector('#afichage_dx2').innerHTML = dx2;
     };
 
     /* var de test p = 5 q = 17 e = 5   */
@@ -114,5 +151,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var x = 0;
     var x2 = 0;
     var x3 = 0;
+    var cm = 0;
+    var cx = 0;
 
 });

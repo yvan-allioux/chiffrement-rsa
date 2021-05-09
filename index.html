@@ -16,7 +16,6 @@
 <input type="text" id="p" name="name">
 <button id="bouton_p">changer p</button><p>p = <span id="afichage_p"></span></p>
 <br>
-
 <label for="name">q</label>
 <input type="text" id="q" name="name">
 <button id="bouton_q">changer q</button> <p>q = <span id="afichage_q"></span></p>
@@ -44,19 +43,49 @@
 <p>clé privée d = <span id="afichage_d2"></span></p>
 <p>on peut suprimer p et q et φ(n)</p>
 <br>
+
+
+
 <h2>chiffrement</h2>
 <p>bob veut envoyer un message a alice</p>
 <p>il prend son message m et le numérise (sou forme de entier), m vérifie 0 <= m < n</p>
 <label for="name">m</label>
-<input type="text" id="m" name="name">
-<button id="bouton_m">changer m</button>
-<p>m = <span id="afichage_m"></span></p>
+<input type="text" id="cm" name="name">
+<button id="bouton_cm">changer m</button>
+<p>m = <span id="afichage_cm"></span></p>
+
+<label for="name">e</label>
+<input type="text" id="ce" name="name">
+<button id="bouton_ce">changer e</button>
+<p>m = <span id="afichage_ce"></span></p>
+
+<label for="name">n</label>
+<input type="text" id="cn" name="name">
+<button id="bouton_cn">changer n</button>
+<p>n = <span id="afichage_cn"></span></p>
+
 <p>il fait m^d modulo n pour avoir le message chifré x</p>
-<p>x = <span id="afichage_x"></span></p>
+<button id="bouton_cx">chiffrer m</button>
+<p>x = <span id="afichage_cx"></span></p>
+
+
+
 <h2>déchiffrement</h2>
 <p>alice décode le message x en effectuant x^d % n pour avoir m</p>
 <label for="name">x</label>
-<input type="text" id="x2" name="name">
-<button id="bouton_x2">changer x</button>
-<p>x = <span id="afichage_x2"></span></p>
-<p>x déchifré = <span id="afichage_x3"></span></p>
+<input type="text" id="dx" name="name">
+<button id="bouton_dx">changer x</button>
+<p>x = <span id="afichage_dx"></span></p>
+
+<label for="name">d</label>
+<input type="text" id="dd" name="name">
+<button id="bouton_dd">changer d</button>
+<p>d = <span id="afichage_dd"></span></p>
+
+<label for="name">n</label>
+<input type="text" id="dn" name="name">
+<button id="bouton_dn">changer n</button>
+<p>n = <span id="afichage_dn"></span></p>
+
+<button id="bouton_dx2">déchifrer x</button>
+<p>x déchifré = <span id="afichage_dx2"></span></p>
