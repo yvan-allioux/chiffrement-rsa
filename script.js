@@ -78,6 +78,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       document.querySelector('#afichage_d').innerHTML = d;
       document.querySelector('#afichage_d2').innerHTML = d;
     };
+
+
+
     /* calcul de m avec le formulaire */
     const button_m = document.querySelector('#bouton_m');
     button_m.onclick = function(){
@@ -86,6 +89,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
       document.querySelector('#afichage_m').innerHTML = m;
       x = Math.pow(m, e) % n;
       document.querySelector('#afichage_x').innerHTML = x;
+    };
+
+
+    
+    /* calcul de m avec le formulaire */
+    const button_x2 = document.querySelector('#bouton_x2');
+    button_x2.onclick = function(){
+      var input_x2 = document.querySelector('#x2');
+      x2 = parseInt(input_x2.value);
+      document.querySelector('#afichage_x2').innerHTML = x2;
+      x3 = Math.pow(x, d) % n;
+      document.querySelector('#afichage_x3').innerHTML = x3;
     };
 
     /* var de test p = 5 q = 17 e = 5   */
@@ -97,5 +112,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var d = 0;
     var m = 0;
     var x = 0;
+    var x2 = 0;
+    var x3 = 0;
 
 });

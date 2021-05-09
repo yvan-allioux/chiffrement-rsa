@@ -44,7 +44,7 @@
 <p>clé privée d = <span id="afichage_d2"></span></p>
 <p>on peut suprimer p et q et φ(n)</p>
 <br>
-<h2>chifrement</h2>
+<h2>chiffrement</h2>
 <p>bob veut envoyer un message a alice</p>
 <p>il prend son message m et le numérise (sou forme de entier), m vérifie 0 <= m < n</p>
 <label for="name">m</label>
@@ -53,15 +53,10 @@
 <p>m = <span id="afichage_m"></span></p>
 <p>il fait m^d modulo n pour avoir le message chifré x</p>
 <p>x = <span id="afichage_x"></span></p>
-
-
-<!-- /* dechifrage */
-/* la clef d de déchiffrage */
-/* alice decode le message m^d en efectuant ((m^d)^e) pour avoir m  */
-
-/* exeample */
-/* p=3 q=5*/
-/* n = p . q = 15 */
-/* (p-1)×(q-1) = 8 */
-/* Dans ce cas, e = 3 est premier avec 8 */
-/* On peut choisir d = 3 puisque e . d = 3.3 = 9 = 8.1 + 1. */ -->
+<h2>déchiffrement</h2>
+<p>alice décode le message x en effectuant x^d % n pour avoir m</p>
+<label for="name">x</label>
+<input type="text" id="x2" name="name">
+<button id="bouton_x2">changer x</button>
+<p>x = <span id="afichage_x2"></span></p>
+<p>x déchifré = <span id="afichage_x3"></span></p>
