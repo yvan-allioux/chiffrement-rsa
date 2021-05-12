@@ -58,11 +58,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
           output += "0"+actuelle;
         }else{
           output += actuelle;
+          
         }
-        
-        
+         
       }
-      output = output.substring(1);
+      /* if(parseInt(output) < 99){
+        output = output.substring(1);
+        
+      } */
+      
       document.querySelector('#afichage_conversion').innerHTML = output;
     };
 
