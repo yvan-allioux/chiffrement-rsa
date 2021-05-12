@@ -12,7 +12,7 @@
 
     <title>chiffrement rsa</title>
 
-    <script src="script/index.js"></script>
+    <script src="script/Dechiffrement.js"></script>
 
     <style>
         p {
@@ -48,85 +48,7 @@
         </div>
       </nav>
 
-    <h2>Création des clés</h2>
-    <p>Le récepteur Alice doit créer une clé privée.</p>
-    <br>
-    <p>1 - chois de p et q de grand nombre premier conus uniquement du récepteur 100 chiffres chacun</p>
-    <p>exeample de nombre premier {2, 3, 5, 7, 11, 13, 17, 19, 23, 29…}</p>
-    <br>
-    <label for="name">p</label>
-    <input type="text" id="p" name="name">
-    <button id="bouton_p">changer p</button>
-    <p>p = <span id="afichage_p"></span></p>
-    <br>
-    <label for="name">q</label>
-    <input type="text" id="q" name="name">
-    <button id="bouton_q">changer q</button>
-    <p>q = <span id="afichage_q"></span></p>
-    <br>
-    <p>2 - p . q = n, n est publique</p>
-    <button id="bouton_n">calculer p*q</button>
-    <p>n = <span id="afichage_n"></span></p>
-    <br>
-    <p>3 - calculer φ(n) = (p - 1)(q - 1) (c'est la valeur de l'indicatrice d'Euler en n)</p>
-    <p>φ(n) = <span id="afichage_fiN"></span></p>
-    <br>
-    <p>4 - choisir un entier naturel e premier avec φ(n) (pgcd de (e,φ(n)) = 1) et strictement inférieur à φ(n),
-        appelé exposant de chiffrement</p>
-    <label for="name">e</label>
-    <input type="text" id="e" name="name">
-    <button id="bouton_e">changer e</button>
-    <p>e = <span id="afichage_e"></span></p>
-    <p>pgcd de e et φ(n) = <span id="afichage_pgcden"></span> (ce nombre doi etre de 1 car e premier avec φ(n) )</p>
-    <br>
-    <p>Calcule un nombre criptographique publique d qui satisfait l'equation e·d mod ((p-1)(q-1) = 1 </p>
-    <p>d est trouver avec l'algoritm étendu d'euclide avec e et φ(n) en paramètre</p>
-    <p>d = <span id="afichage_d"></span></p>
-    <br>
-    <p>clé publique: n = <span id="afichage_n2"></span> et e = <span id="afichage_e2"></span></p>
-    <p>clé privée d = <span id="afichage_d2"></span></p>
-    <p>on peut suprimer p et q et φ(n)</p>
-    <br>
-
-    <h2>text vers nombre</h2>
-    <p>dans la table ascii svp</p>
-    <label for="name">conversion</label>
-    <input type="text" id="conversion" name="name">
-    <button id="bouton_conversion">conversion</button>
-    <p><span id="afichage_conversion"></span></p>
-    <br>
-
-    <h2>nombre vers text</h2>
-    <label for="name">conversion</label>
-    <input type="text" id="conversion2" name="name">
-    <button id="bouton_conversion2">conversion</button>
-    <p><span id="afichage_conversion2"></span></p>
-    <br>
-
-    <h2>chiffrement</h2>
-    <p>bob veut envoyer un message a alice</p>
-    <p>il prend son message m et le numérise (sou forme de entier), m vérifie 0 <= m < n</p> <label for="name">m</label>
-            <input type="text" id="cm" name="name">
-            <button id="bouton_cm">changer m</button>
-            <p>m = <span id="afichage_cm"></span></p>
-
-            <label for="name">e</label>
-            <input type="text" id="ce" name="name">
-            <button id="bouton_ce">changer e</button>
-            <p>m = <span id="afichage_ce"></span></p>
-
-            <label for="name">n</label>
-            <input type="text" id="cn" name="name">
-            <button id="bouton_cn">changer n</button>
-            <p>n = <span id="afichage_cn"></span></p>
-
-            <p>il fait m^d modulo n pour avoir le message chifré x</p>
-            <button id="bouton_cx">chiffrer m</button>
-            <p>x = <span id="afichage_cx"></span></p>
-
-
-
-            <h2>déchiffrement</h2>
+            <h2>Déchiffrement</h2>
             <p>alice décode le message x en effectuant x^d % n pour avoir m</p>
             <label for="name">x</label>
             <input type="text" id="dx" name="name">
