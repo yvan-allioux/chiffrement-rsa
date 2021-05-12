@@ -49,46 +49,16 @@
       </nav>
 
     <h2>Création des clés</h2>
-    <p>Le récepteur Alice doit créer une clé privée.</p>
-    <br>
-    <p>1 - chois de p et q de grand nombre premier conus uniquement du récepteur 100 chiffres chacun</p>
-    <p>exeample de nombre premier {2, 3, 5, 7, 11, 13, 17, 19, 23, 29…}</p>
-    <br>
-    <label for="name">p</label>
-    <input type="text" id="p" name="name">
-    <button id="bouton_p">changer p</button>
-    <p>p = <span id="afichage_p"></span></p>
-    <br>
-    <label for="name">q</label>
-    <input type="text" id="q" name="name">
-    <button id="bouton_q">changer q</button>
-    <p>q = <span id="afichage_q"></span></p>
-    <br>
-    <p>2 - p . q = n, n est publique</p>
-    <button id="bouton_n">calculer p*q</button>
-    <p>n = <span id="afichage_n"></span></p>
-    <br>
-    <p>3 - calculer φ(n) = (p - 1)(q - 1) (c'est la valeur de l'indicatrice d'Euler en n)</p>
-    <p>φ(n) = <span id="afichage_fiN"></span></p>
-    <br>
-    <p>4 - choisir un entier naturel e premier avec φ(n) (pgcd de (e,φ(n)) = 1) et strictement inférieur à φ(n),
-        appelé exposant de chiffrement</p>
-    <label for="name">e</label>
-    <input type="text" id="e" name="name">
-    <button id="bouton_e">changer e</button>
-    <p>e = <span id="afichage_e"></span></p>
-    <p>pgcd de e et φ(n) = <span id="afichage_pgcden"></span> (ce nombre doi etre de 1 car e premier avec φ(n) )</p>
-    <br>
-    <p>Calcule un nombre criptographique publique d qui satisfait l'equation e·d mod ((p-1)(q-1) = 1 </p>
-    <p>d est trouver avec l'algoritm étendu d'euclide avec e et φ(n) en paramètre</p>
-    <p>d = <span id="afichage_d"></span></p>
-    <br>
-    <p>clé publique: n = <span id="afichage_n2"></span> et e = <span id="afichage_e2"></span></p>
-    <p>clé privée d = <span id="afichage_d2"></span></p>
-    <p>on peut suprimer p et q et φ(n)</p>
-    <br>
+    <p>Le protocole RSA permet de chiffrer des messages de façon asymétrique, la solution asymétrique<br>
+         vous donne une clé publique qui permet à quelqu'un de vous envoyer un message chiffrer grâce <br>
+         à cette clé publique et ce message est déchiffrable uniquement avec votre clé privée <br>
+         liée à votre clé publique, cela permet une communication sécurisée ! <br>
+         Toutes les communications modernes des banques des messageries ou d'autres secteurs utilisent ce système. <br>
+         Ce chiffrement sécurisé a été inventé dans les années 70 et il est basé sur le fait qu'il est facile de multiplier deux nombres premiers mais qu'il est <br>
+         difficile de factoriser un nombre entier en deux nombres premiers.</p>
+    
 
-    <h2>text vers nombre</h2>
+    <!-- <h2>text vers nombre</h2>
     <p>dans la table ascii svp</p>
     <label for="name">conversion</label>
     <input type="text" id="conversion" name="name">
@@ -144,7 +114,7 @@
             <p>n = <span id="afichage_dn"></span></p>
 
             <button id="bouton_dx2">déchifrer x</button>
-            <p>x déchifré = <span id="afichage_dx2"></span></p>
+            <p>x déchifré = <span id="afichage_dx2"></span></p> -->
 
 
 
