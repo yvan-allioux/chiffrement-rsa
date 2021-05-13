@@ -21,7 +21,7 @@ while (b != 0) {
   r = nouveau_r; s = nouveau_s;
 }
 // Affiche le résultat.
-console.log("pgcd(" + a0 + "," + b0 + ")=" + p + "*" + a0 + "+(" + q + ")*" + b0 + "=" + a);
+
 return p;
 }
 
@@ -39,14 +39,14 @@ function pgcd(a,b) {
 
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    console.log("start");
+    
     /* changement de p avec le formulaire */
     const button_p = document.querySelector('#bouton_p');
     button_p.onclick = function(){
       var input_p = document.querySelector('#p');
       p = parseInt(input_p.value);
       document.querySelector('#afichage_p').innerHTML = p;
-      console.log('p: ', p);
+      
     };
     /* changement de q avec le formulaire */
     const button_q = document.querySelector('#bouton_q');
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var input_q = document.querySelector('#q');
       q = parseInt(input_q.value);
       document.querySelector('#afichage_q').innerHTML = q;
-      console.log('q: ', q); 
+       
     };
     /* calcul de n avec le formulaire */
     const button_n = document.querySelector('#bouton_n');
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       e = parseInt(input_e.value);
       document.querySelector('#afichage_e').innerHTML = e;
       document.querySelector('#afichage_e2').innerHTML = e;
-      console.log('e: ', e); 
+       
       document.querySelector('#afichage_pgcden').innerHTML = pgcd(e,fiN);
       d = euclide2(e,fiN);
       document.querySelector('#afichage_d').innerHTML = d;

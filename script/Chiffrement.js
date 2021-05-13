@@ -21,7 +21,7 @@ while (b != 0) {
   r = nouveau_r; s = nouveau_s;
 }
 // Affiche le résultat.
-console.log("pgcd(" + a0 + "," + b0 + ")=" + p + "*" + a0 + "+(" + q + ")*" + b0 + "=" + a);
+
 return p;
 }
 
@@ -39,7 +39,7 @@ function pgcd(a,b) {
 
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    console.log("start");
+    
     /* chiffrement */
 
     /* changement de m */
