@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const bouton_dx2 = document.querySelector('#bouton_dx2');
     bouton_dx2.onclick = function(){
       dx2 = Math.pow(dx, dd) % dn;
+      if(Math.pow(dx, dd)===Infinity){console.log(dx+" a la puissance "+dd+" est trop élevé pour javascript" );}
       document.querySelector('#afichage_dx2').innerHTML = dx2;
     };
 

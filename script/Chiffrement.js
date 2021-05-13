@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     button_cm.onclick = function(){
       var input_cm = document.querySelector('#cm');
       cm = parseInt(input_cm.value);
+      
       document.querySelector('#afichage_cm').innerHTML = cm;
     };
     /* changement de e */
@@ -54,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     button_ce.onclick = function(){
       var input_ce = document.querySelector('#ce');
       ce = parseInt(input_ce.value);
+      
       document.querySelector('#afichage_ce').innerHTML = ce;
     };
     /* changement de n*/
@@ -61,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     button_cn.onclick = function(){
       var input_cn = document.querySelector('#cn');
       cn = parseInt(input_cn.value);
+      
       document.querySelector('#afichage_cn').innerHTML = cn;
     };
     /*chiffrement*/
@@ -70,17 +73,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
       document.querySelector('#afichage_cx').innerHTML = cx;
     };
     /* var de test p = 5 q = 17 e = 5   */
-    var p = 0;
-    var q = 0;
-    var n = 0;
-    var fiN = 0;
-    var e = 0;
-    var d = 0;
-    var m = 0;
-    var x = 0;
-    var x2 = 0;
-    var x3 = 0;
-    var cm = 0;
-    var cx = 0;
 
 });
