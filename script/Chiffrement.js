@@ -1,4 +1,34 @@
 /**
+ * Fast modular exponentiation for a ^ b mod n
+ * @returns {number}
+ */
+ var fastModularExponentiation = function(a, b, n) {
+  a = a % n;
+  var result = 1;
+  var x = a;
+
+  while(b > 0){
+    var leastSignificantBit = b % 2;
+    b = Math.floor(b / 2);
+
+    if (leastSignificantBit == 1) {
+      result = result * x;
+      result = result % n;
+    }
+
+    x = x * x;
+    x = x % n;
+  }
+  return result;
+};
+
+var assert = function(actual, expected){
+  if (actual != expected){
+    throw new Error('Assertion failed');
+  }
+};
+
+/**
  * caccul ud pgcd etendu
  * @param {*} a 
  * @param {*} b 
@@ -69,7 +99,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     /*chiffrement*/
     const bouton_cx = document.querySelector('#bouton_cx');
     bouton_cx.onclick = function(){
-      cx = Math.pow(cm, ce) % cn;
+      //cx = Math.pow(cm, ce) % cn;
+      cx = fastModularExponentiation(cm, ce, cn);
       document.querySelector('#afichage_cx').innerHTML = cx;
     };
     /* var de test p = 5 q = 17 e = 5   */
