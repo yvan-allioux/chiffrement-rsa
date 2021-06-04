@@ -40,20 +40,25 @@ function euclide2(a,b){
 a0 = a;
 b0 = b;
 // Initialisations. On laisse invariant p*a0 + q*b0 = a et  r*a0 + s*b0 = b.
-p = 1; q = 0;
-r = 0; s = 1;
+p = 1;
+q = 0;
+r = 0;
+s = 1;
 // La boucle principale:
 while (b != 0) { 
   c = a % b;
   quotient = Math.floor(a/b);  //Javascript n'a pas d'opération de division entière.
   a = b;
   b = c;
-  nouveau_r = p - quotient * r; nouveau_s = q - quotient * s;
-  p = r; q = s;
-  r = nouveau_r; s = nouveau_s;
+  nouveau_r = p - quotient * r;
+  nouveau_s = q - quotient * s;
+  p = r;
+  q = s;
+  r = nouveau_r;
+  s = nouveau_s;
 }
 // Affiche le résultat.
-
+console.log('p: ', p);
 return p;
 }
 
@@ -106,6 +111,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       document.querySelector('#afichage_e2').innerHTML = e;
        
       document.querySelector('#afichage_pgcden').innerHTML = pgcd(e,fiN);
+      console.log('fiN: ', fiN);
+      console.log('e: ', e);
+      console.log("----------");
       d = euclide2(e,fiN);
       document.querySelector('#afichage_d').innerHTML = d;
       document.querySelector('#afichage_d2').innerHTML = d;

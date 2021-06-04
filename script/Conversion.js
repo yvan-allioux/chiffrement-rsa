@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     output = "";
     for (var i = 0; i < conversion.length; i++) {
-      var actuelle = conversion[i].charCodeAt(0);
+      var actuelle = "";
+      actuelle = conversion[i].charCodeAt(0);
       if (actuelle.toString().length == 1) {
         output += "00" + actuelle;
       } else if (actuelle.toString().length == 2) {
