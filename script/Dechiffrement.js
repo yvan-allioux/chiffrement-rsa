@@ -1,4 +1,30 @@
 /**
+ * Fast modular exponentiation for a ^ b mod n
+ * @returns {number}
+ */
+ var fastModularExponentiation = function(a, b, n) {
+  a = a % n;
+  var result = 1;
+  var x = a;
+
+  while(b > 0){
+    var leastSignificantBit = b % 2;
+    b = Math.floor(b / 2);
+
+    if (leastSignificantBit == 1) {
+      result = result * x;
+      result = result % n;
+    }
+
+    x = x * x;
+    x = x % n;
+  }
+  return result;
+};
+
+
+
+/**
  * caccul ud pgcd etendu
  * @param {*} a 
  * @param {*} b 
@@ -66,8 +92,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     /*déchiffrement*/
     const bouton_dx2 = document.querySelector('#bouton_dx2');
     bouton_dx2.onclick = function(){
-      dx2 = Math.pow(dx, dd) % dn;
-      if(Math.pow(dx, dd)===Infinity){console.log(dx+" a la puissance "+dd+" est trop élevé pour javascript" );}
+      //dx2 = Math.pow(dx, dd) % dn;
+      dx2 = fastModularExponentiation(dx, dd, dn);
+      //if(Math.pow(dx, dd)===Infinity){console.log(dx+" a la puissance "+dd+" est trop élevé pour javascript" );}
       document.querySelector('#afichage_dx2').innerHTML = dx2;
     };
 
