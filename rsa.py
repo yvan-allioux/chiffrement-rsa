@@ -40,11 +40,14 @@ def pgcd(a,b) :
       a, b = b, a%b 
    return b
 
-def recherche_prochain_nombre_premier_avec_phi_n(min):
+def recherche_prochain_nombre_premier_avec_phi_n(min, phi_n_param):
     i = min
-    while (pgcd(phi_n, i) != 1):
+    while (pgcd(phi_n_param, i) != 1):
         i += 1
     return i
+
+
+
 
 def text_to_binary(text):
     binary_representation = ""
@@ -61,6 +64,28 @@ def binary_to_text(binary_string):
         text += char
     return text
 
+def int_to_text(integer_value):
+    binary_string = bin(integer_value)[2:]
+    # Ajouter des zéros à gauche si nécessaire pour obtenir un multiple de 8 bits
+    binary_string = binary_string.zfill((len(binary_string) + 7) // 8 * 8)
+    text = binary_to_text(binary_string)
+    return text
+
+def text_to_int(text):
+    binary_string = text_to_binary(text)
+    integer_value = int(binary_string, 2)
+    return integer_value
+
+def key_clear(key):
+    n_hex = key.split('-')[0]
+    n = int(n_hex, 16)
+    e_or_d_hex = key.partition('-')[2]
+    e_or_d = int(e_or_d_hex, 16)
+    return n, e_or_d
+
+def decoupage_int_en_blocs(intVar, taille):
+    strVar = str(intVar)
+    return [int(strVar[i:i + taille]) for i in range(0, len(strVar), taille)]
 
 def chiffrement_RSA(m, e, n):
     return exponentiation_rapide(m, e, n)
@@ -79,53 +104,6 @@ if __name__ == "__main__":
     #print("Coefficients de Bezout: ", x, y)  # x * 42 + y * 56 = pgcd(42, 56)
 
 
-
-    # Chiffrement RSA TEST
-    m = 65  # Message à chiffrer (ASCII de 'A')
-    e = 3  # Exposant public : e entre 1 et phi(n) et premier avec phi(n) (taille de 16 à 32 bits c'est mieux) 18 bit = 262144 24 bit = 16777216
-    p = 11  # Nombre premier
-    q = 17  # Nombre premier
-    n = p * q
-    c = chiffrement_RSA(m, e, n)
-    phi_n = (p - 1) * (q - 1)
-    d = coefficients_bezout(e, phi_n)[0] % phi_n  # Exposant privé : d = e^-1 mod phi(n)
-    m = dechiffrement_RSA(c, d, n)
-    if (m != 65):
-        print("erreur chiffrement RSA")
-
-
-
-    
-
-    p = recherche_prochain_nombre_premier(random.randint(10000000000, 1000000000000))
-    q = recherche_prochain_nombre_premier(random.randint(10000000000, 1000000000000))
-    n = p * q
-    phi_n = (p - 1) * (q - 1)
-    e = recherche_prochain_nombre_premier_avec_phi_n(random.randint(10000000, 1000000000))
-    d = coefficients_bezout(e, phi_n)[0] % phi_n
-    if (e >= phi_n):
-        print("erreur e >= phi_n")
-    if (pgcd(e, phi_n) != 1):
-        print("erreur pgcd(e, phi_n) != 1")
-    if (d >= phi_n):
-        print("erreur d >= phi_n")
-    
-    e_hex = hex(e)[2:]
-    n_hex = hex(n)[2:]
-    print("cle publique (n leng " + str(len(str(abs(n)))) + "): " + n_hex + "-" + e_hex)
-    d_hex = hex(d)[2:]
-    print("cle privee: " + n_hex + "-" + d_hex)
-
-    m = 65  # Message à chiffrer (ASCII de 'A')
-    c = chiffrement_RSA(m, e, n)
-    c_hex = hex(c)[2:]
-    print("Message chiffré: ", c_hex)
-    m = dechiffrement_RSA(c, d, n)
-    print("Message déchiffré: ", m)
-
-
-
-
     print("MENU RSA ENCRYPTION")
     print("1 Encrypt")
     print("2 Decrypt")
@@ -139,19 +117,10 @@ if __name__ == "__main__":
         key_user_input_hex = input()
         print("Message en claire :")
         text_user_input_clear = input()
-
-        #convert string to int
-        binary_string = text_to_binary(text_user_input_clear)
-        int_message = int(binary_string, 2)
-
-        #split n
-        n_hex = key_user_input_hex.partition('-')[2]
-        n = int(n_hex, 16)
-        #split e
-        e_hex = key_user_input_hex.split('-')[0]
-        e = int(e_hex, 16)
-
         print("Message chiffré :")
+
+        int_message = text_to_int(text_user_input_clear)
+        n, e = key_clear(key_user_input_hex)
         m = chiffrement_RSA(int_message, e, n)
         m_hex = hex(m)[2:]
         print(m_hex)
@@ -162,26 +131,20 @@ if __name__ == "__main__":
         key_user_input_hex = input()
         print("Message chiffré :")
         text_user_input_hex = input()
-
-        #split n
-        n_hex = key_user_input_hex.partition('-')[2]
-        n = int(n_hex, 16)
-        #split d
-        d_hex = key_user_input_hex.split('-')[1]
-        d = int(d_hex, 16)
-
         print("Message déchiffré :")
+
+        n, d = key_clear(key_user_input_hex)
         c = int(text_user_input_hex, 16)
         m = dechiffrement_RSA(c, d, n)
-        m_bin = bin(m)[2:]
-        print(binary_to_text(m_bin))
+        m_text = int_to_text(m)
+        print(m_text)
 
     elif mode == "3":
         p = recherche_prochain_nombre_premier(random.randint(10000000000, 1000000000000))
         q = recherche_prochain_nombre_premier(random.randint(10000000000, 1000000000000))
         n = p * q
         phi_n = (p - 1) * (q - 1)
-        e = recherche_prochain_nombre_premier_avec_phi_n(random.randint(10000000, 1000000000))
+        e = recherche_prochain_nombre_premier_avec_phi_n(random.randint(10000000, 1000000000), phi_n)
         d = coefficients_bezout(e, phi_n)[0] % phi_n
         if (e >= phi_n):
             print("erreur e >= phi_n")
