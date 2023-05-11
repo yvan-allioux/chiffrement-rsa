@@ -46,9 +46,6 @@ def recherche_prochain_nombre_premier_avec_phi_n(min, phi_n_param):
         i += 1
     return i
 
-
-
-
 def text_to_binary(text):
     binary_representation = ""
     for char in text:
@@ -83,9 +80,15 @@ def key_clear(key):
     e_or_d = int(e_or_d_hex, 16)
     return n, e_or_d
 
-def decoupage_int_en_blocs(intVar, taille):
+def string_block_clear(blocks):
+    blocks_list = blocks.split('-')
+    blocks_list.pop()
+    return blocks_list
+
+def decoupage_int_en_blocs_plus1(intVar, taille):
     strVar = str(intVar)
-    return [int(strVar[i:i + taille]) for i in range(0, len(strVar), taille)]
+    blocs = [strVar[i:i + taille] for i in range(0, len(strVar), taille)]
+    return [int('1' + bloc) for bloc in blocs]
 
 def chiffrement_RSA(m, e, n):
     return exponentiation_rapide(m, e, n)
@@ -111,6 +114,7 @@ if __name__ == "__main__":
     print("4 Exit\n")
 
     mode = input()
+
     if mode == "1":
         print("----Encrypt----")
         print("Clé publique :")
@@ -118,12 +122,26 @@ if __name__ == "__main__":
         print("Message en claire :")
         text_user_input_clear = input()
         print("Message chiffré :")
-
+        #traitement text
         int_message = text_to_int(text_user_input_clear)
         n, e = key_clear(key_user_input_hex)
-        m = chiffrement_RSA(int_message, e, n)
-        m_hex = hex(m)[2:]
-        print(m_hex)
+        #decoupage en blocs
+        leng_n = len(str(abs(n)))
+        leng_m = len(str(abs(int_message)))
+        if leng_m >= leng_n:
+            blocs = decoupage_int_en_blocs_plus1(int_message, leng_n - 2)
+        else:
+            blocs = [int_message]
+        #metadonnees
+        m = "#" + str(leng_n - 2) + "#"
+        #chiffrement
+        for bloc in blocs:
+            m = m + hex(chiffrement_RSA(bloc, e, n))[2:] + "-"
+
+        #m = chiffrement_RSA(int_message, e, n)
+        #m_hex = hex(m)[2:]
+
+        print(m)
 
     elif mode == "2":
         print("----Decrypt----")
@@ -134,9 +152,13 @@ if __name__ == "__main__":
         print("Message déchiffré :")
 
         n, d = key_clear(key_user_input_hex)
-        c = int(text_user_input_hex, 16)
-        m = dechiffrement_RSA(c, d, n)
-        m_text = int_to_text(m)
+        c_tab = string_block_clear(text_user_input_hex)
+        # addition des blocs
+        m = ""
+        for i in range(len(c_tab)):
+            m = m + str(dechiffrement_RSA(int(c_tab[i][1:], 16), d, n))
+        #conversion en int
+        m_text = int_to_text(int(m))
         print(m_text)
 
     elif mode == "3":

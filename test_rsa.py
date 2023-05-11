@@ -33,9 +33,12 @@ def test_recherche_prochain_nombre_premier_avec_phi_n():
 
 def test_text_to_binary():
     assert text_to_binary("A") == "01000001"
+    assert text_to_binary("salut comment ça va ?") == "011100110110000101101100011101010111010000100000011000110110111101101101011011010110010101101110011101000010000011100111011000010010000001110110011000010010000000111111"
+
 
 def test_binary_to_text():
     assert binary_to_text("01000001") == "A"
+    assert binary_to_text("011100110110000101101100011101010111010000100000011000110110111101101101011011010110010101101110011101000010000011100111011000010010000001110110011000010010000000111111") == "salut comment ça va ?"
 
 def test_int_to_text():
     assert int_to_text(65) == "A"
@@ -77,7 +80,6 @@ def test_hex():
 def test_chiffrement_dechiffrement():
     test_pub = "172ffa1f92e5b0ed9a5-229867e7"
     test_m = "salut"
-    test_m = "abcdefgh"
 
     test_m_int = text_to_int(test_m)
     test_n, test_e = key_clear(test_pub)
@@ -102,7 +104,53 @@ def test_chiffrement_dechiffrement():
 
     assert m_result_text == test_m
 
-def test_decoupage_int_en_blocs():
-    assert decoupage_int_en_blocs(123456789, 2) == [12, 34, 56, 78, 9]
-    assert decoupage_int_en_blocs(123456789, 8) == [12345678, 9]
-    assert decoupage_int_en_blocs(123456789, 9) == [123456789]
+def test_decoupage_int_en_blocs_plus1():
+    assert decoupage_int_en_blocs_plus1(123456789, 2) == [112, 134, 156, 178, 19]
+    assert decoupage_int_en_blocs_plus1(123456789, 8) == [112345678, 19]
+    assert decoupage_int_en_blocs_plus1(123456789, 9) == [1123456789]
+    assert decoupage_int_en_blocs_plus1(544467283666114334728142787847140735094807035110519333515912566699781498728398571574480531964225, 21) == [1544467283666114334728, 1142787847140735094807, 1035110519333515912566, 1699781498728398571574, 1480531964225]
+
+
+def test_chiffrement_dechiffrement_block():
+    test_pub = "172ffa1f92e5b0ed9a5-229867e7"
+    test_m = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
+    test_m_int = text_to_int(test_m)
+    test_n, test_e = key_clear(test_pub)
+
+    # Découpage en blocs
+    leng_n = len(str(abs(test_n)))
+    leng_m = len(str(abs(test_m_int)))
+    if leng_m >= leng_n:
+        blocs = decoupage_int_en_blocs_plus1(test_m_int, leng_n - 2)
+    else:
+        blocs = [test_m_int]
+    print(blocs)
+    # Chiffrement
+    m = ""
+    for bloc in blocs:
+        print("chhifre : " + str(chiffrement_RSA(bloc, test_e, test_n)))
+        m = m + hex(chiffrement_RSA(bloc, test_e, test_n))[2:] + "-"
+
+    # test_c_hex peut être envoyé
+
+    # Déchiffrement
+    priv = "172ffa1f92e5b0ed9a5-1607b79a7af94bc7877"
+    test_c_hex = m
+    n, d = key_clear(priv)
+    c_tab = string_block_clear(test_c_hex)
+    # Addition des blocs
+    m_result = ""
+    for i in range(len(c_tab)):
+        bloc = c_tab[i]
+        bloc = hex(block_to_int)[2:]
+        bloc = dechiffrement_RSA(bloc, d, n)
+        bloc = str(bloc)
+        bloc = bloc[1:]
+        m_result = m_result + bloc
+    # Conversion en texte
+    m_result_text = int_to_text(int(m_result))
+
+    assert m_result_text == test_m
+
+
