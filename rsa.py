@@ -62,7 +62,8 @@ def pgcd(a,b) :
    return b
 
 """
-Recherche le prochain nombre premier qui est coprime avec phi_n.
+Recherche le prochain nombre premier qui est coprime (premiers entre eux) avec phi_n. (nomé e)
+PGCD(e, φ(n)) = 1
 Paramètres: min (int), phi_n (int)
 """
 def recherche_prochain_nombre_premier_avec_phi_n(min, phi_n_param):
@@ -111,24 +112,6 @@ Paramètres: text (str)
 """
 def text_to_int(text):
     binary_string = text_to_binary(text)
-    integer_value = int(binary_string, 2)
-    return integer_value
-
-"""
-conversion entre texte et entier.
-Paramètres: integer (int)
-"""
-def int_to_text2(integer):
-    binary_string = format(integer, '08b')
-    text = ''.join([chr(int(binary_string[i:i+8], 2)) for i in range(0, len(binary_string), 8)])
-    return text
-
-"""
-conversion entre texte et entier
-Paramètres: text (str)
-"""
-def text_to_int2(text):
-    binary_string = ''.join(format(ord(char), '08b') for char in text)
     integer_value = int(binary_string, 2)
     return integer_value
 
@@ -193,7 +176,7 @@ def remove_first_char_if_one(arr):
         num_str = str(num)
         if num_str.startswith("1"):
             num_str = num_str[1:]
-        result.append(int(num_str))
+        result.append(num_str)
     return result
 
 """
@@ -227,7 +210,7 @@ Paramètres: cle_pub (str), text (str)
 def chiffrement_RSA_text(cle_pub, text):
     test_n, test_e = key_clear(cle_pub)
     #Conversion en int du message
-    test_m_int = text_to_int2(text)
+    test_m_int = text_to_int(text)
     #Découpage en blocs du message int et ajou de 1
     leng_n = len(str(abs(test_n)))
     leng_m = len(str(abs(test_m_int)))
@@ -262,8 +245,10 @@ def dechiffrement_RSA_text(cle_prive, text):
     #Conversion String ver int
     m_result_int = int(m_result_str)
     #Conversion int ver message
-    m_result_text = int_to_text2(m_result_int)
+    m_result_text = int_to_text(m_result_int)
     return m_result_text
+
+
 
 
 if __name__ == "__main__":

@@ -41,10 +41,19 @@ def test_binary_to_text():
     assert binary_to_text("011100110110000101101100011101010111010000100000011000110110111101101101011011010110010101101110011101000010000011100111011000010010000001110110011000010010000000111111") == "salut comment ça va ?"
 
 def test_int_to_text():
+    assert int_to_text(495555736948) == "salut"
     assert int_to_text(65) == "A"
 
 def test_text_to_int():
+    assert text_to_int("salut") == 495555736948
     assert text_to_int("A") == 65
+
+def test_int_to_text___text_to_int():
+    assert int_to_text(text_to_int("salut")) == "salut"
+    assert int_to_text(text_to_int("A")) == "A"
+    assert int_to_text(text_to_int("salut c'est yvan")) == "salut c'est yvan"
+    assert int_to_text(text_to_int("AAAAAAAAAAAAAAAAAAAAAAAAAA")) == "AAAAAAAAAAAAAAAAAAAAAAAAAA"
+
 
 def test_chiffrement_RSA():
     m = 65
@@ -87,6 +96,12 @@ def test_tabStr_to_str():
     expected_result = "Hello world"
     assert tabStr_to_str(arr) == expected_result
 
+def test_remove_first_char_if_one():
+    arr = [110486058453517489484, 132088204570860615920, 137089476649697174176, 1065]
+    assert remove_first_char_if_one(arr) == ["10486058453517489484", "32088204570860615920", "37089476649697174176", "065"] #tableau de String
+    arr = [110486058453517489484, 132088204570860615920, 137089476649697174176]
+    assert remove_first_char_if_one(arr) == ["10486058453517489484", "32088204570860615920", "37089476649697174176"] #tableau de String
+
 def test_chiffrement_dechiffrement():
     test_pub = "172ffa1f92e5b0ed9a5-229867e7"
     test_m = "salut"
@@ -123,12 +138,14 @@ def test_decoupage_int_en_blocs_plus1():
 
 def test_chiffrement_dechiffrement_block():
     test_pub = "172ffa1f92e5b0ed9a5-229867e7"
-    test_m = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    test_m = "AAAAAAAAAAAAAAAAAAAAAAAAAA"
+    #test_m = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
     test_n, test_e = key_clear(test_pub)
 
     #Conversion en int du message
     test_m_int = text_to_int(test_m)
+    stade1test = test_m_int
     #Découpage en blocs du message int et ajou de 1
     leng_n = len(str(abs(test_n)))
     leng_m = len(str(abs(test_m_int)))
@@ -136,9 +153,7 @@ def test_chiffrement_dechiffrement_block():
         blocs = decoupage_int_en_blocs_plus1(test_m_int, leng_n - 2)
     else:
         blocs = [test_m_int]
-    #Chiffrement de chaque block int plus 1
-    #Conversion en Hex des block chiffré
-    #Addition des block hex séparé par des -
+    #Chiffrement de chaque block
     m = ""
     for bloc in blocs:
         m = m + hex(chiffrement_RSA(bloc, test_e, test_n))[2:] + "-"
@@ -162,6 +177,7 @@ def test_chiffrement_dechiffrement_block():
     m_result_str = tabStr_to_str(m_dechiff_tabStr_moin1)
     #Conversion String ver int
     m_result_int = int(m_result_str)
+    assert m_result_int == stade1test
     #Conversion int ver message
     m_result_text = int_to_text(m_result_int)
 
@@ -169,13 +185,13 @@ def test_chiffrement_dechiffrement_block():
 
 def test_chiffrement_RSA_text__dechiffrement_RSA_text():
     test1 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    #assert test1 == dechiffrement_RSA_text("172ffa1f92e5b0ed9a5-1607b79a7af94bc7877", chiffrement_RSA_text("172ffa1f92e5b0ed9a5-229867e7", test1))
+    assert test1 == dechiffrement_RSA_text("172ffa1f92e5b0ed9a5-1607b79a7af94bc7877", chiffrement_RSA_text("172ffa1f92e5b0ed9a5-229867e7", test1))
     test2 = "salut"
     assert test2 == dechiffrement_RSA_text("172ffa1f92e5b0ed9a5-1607b79a7af94bc7877", chiffrement_RSA_text("172ffa1f92e5b0ed9a5-229867e7", test2))
     test3 = "comment ça va ?"
     assert test3 == dechiffrement_RSA_text("172ffa1f92e5b0ed9a5-1607b79a7af94bc7877", chiffrement_RSA_text("172ffa1f92e5b0ed9a5-229867e7", test3))
     test4 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    #assert test4 == dechiffrement_RSA_text("172ffa1f92e5b0ed9a5-1607b79a7af94bc7877", chiffrement_RSA_text("172ffa1f92e5b0ed9a5-229867e7", test4))
+    assert test4 == dechiffrement_RSA_text("172ffa1f92e5b0ed9a5-1607b79a7af94bc7877", chiffrement_RSA_text("172ffa1f92e5b0ed9a5-229867e7", test4))
     test5 = "c'esr super la crypto"
     assert test5 == dechiffrement_RSA_text("172ffa1f92e5b0ed9a5-1607b79a7af94bc7877", chiffrement_RSA_text("172ffa1f92e5b0ed9a5-229867e7", test5))
     test6 = "yvan devrai aller réviser les proba"
@@ -185,4 +201,8 @@ def test_chiffrement_RSA_text__dechiffrement_RSA_text():
     test8 = "AAAAAAAAAAAAAAAAAAAAAAAAAA"
     assert test8 == dechiffrement_RSA_text("172ffa1f92e5b0ed9a5-1607b79a7af94bc7877", chiffrement_RSA_text("172ffa1f92e5b0ed9a5-229867e7", test8))
     test9 = "salut c'est yvan"
-    assert test9 == dechiffrement_RSA_text("187f781f457d676d4d93-750d148f9d61a18b54d", chiffrement_RSA_text("187f781f457d676d4d93-295cb965", test8))
+    assert test9 == dechiffrement_RSA_text("187f781f457d676d4d93-750d148f9d61a18b54d", chiffrement_RSA_text("187f781f457d676d4d93-295cb965", test9))
+
+#TODO : test generation de clé + test chiffrement dechiffrement texte generé aléatoirement
+
+
