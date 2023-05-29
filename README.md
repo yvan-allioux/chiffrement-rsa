@@ -1,25 +1,36 @@
 # chiffrement-rsa
 
+lancer lez programme : python rsa.py
+
+work with Python 3.10.6
+
 link : https://yvan-allioux.github.io/chiffrement-rsa/
+
+CHIFFREMENT
+
+Conversion en int du message
+Découpage en blocs du message int et ajou de 1
+Chiffrement de chaque block int plus 1
+Conversion en Hex des block chiffré
+Addition des block hex séparé par des -
+
+DECHIFFREMENT
+string block hex séparé par des - converti en tableau dex
+Tableau de blocs hex en tableau de int
+Dechiffrement des block int
+Découpage des int en enlevant les "1" devant les chiffres, renvois un tableau de String
+Conversion tableau de string en grand String
+Conversion String int
+Conversion int message
+
+
+
+
 
 
 172ffa1f92e5b0ed9a5-229867e7
 172ffa1f92e5b0ed9a5-1607b79a7af94bc7877
 
-b116ccd0981cf6e8b-
-
-
-salutsalutsalutsalutsalutsalutsalutsalutsalutsalutsalutsalutsalut
-
-fd3360c2c4aa45d25b-b2f3ef770e62772da0-1310a9a5b8baf403f23-cf079bbf161083aa3d-d717b09d0cd47f83bb-12d9a0feef00b6891a5-14dd972d597010f5d7f-4fc86bc5afe74ecd58-
-
-
-¾
- ¾ØVØ¥#W¥Xqð$r%>¼ñ>ò
-                    ¾
-                     ¾ØVØÇ9f×Ãt|çRØe
-                                     íalutsalut
-
-
-
-#21#fd3360c2c4aa45d25b-b2f3ef770e62772da0-1310a9a5b8baf403f23-cf079bbf161083aa3d-d717b09d0cd47f83bb-12d9a0feef00b6891a5-14dd972d597010f5d7f-4fc86bc5afe74ecd58-                        
+                     
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+fc12fff562391c2fcd-10e0e38d61fcd4e197f-11f3f75f089a68c3c7c-95725b93fa780e86ca-9d077f73cc7e2c12d9-cb8d0822976bf31d65-
