@@ -4,9 +4,7 @@ lancer lez programme : python rsa.py
 
 Dockerfile disponible
 
-work with Python 3.10.6
-
-link : https://yvan-allioux.github.io/chiffrement-rsa/
+Fonctionne avec Python 3.10.6
 
 ![figure expliquant le choffrement rsa](rsa.drawio.png)
 
