@@ -14,7 +14,7 @@ CMD ["/bin/bash"]
 
 #docker build -t rsa_py .
 
-#docker run -it mon_image_python
+#docker run -it rsa_py
 
 #python rsa.py
 
