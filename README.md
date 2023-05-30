@@ -2,9 +2,14 @@
 
 lancer lez programme : python rsa.py
 
+Dockerfile disponible
+
 work with Python 3.10.6
 
 link : https://yvan-allioux.github.io/chiffrement-rsa/
+
+![figure expliquant le choffrement rsa](rsa.drawio.png)
+
 
 CHIFFREMENT
 
