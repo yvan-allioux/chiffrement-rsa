@@ -1,8 +1,14 @@
 # chiffrement-rsa
 
-lancer lez programme : python rsa.py
+lancer le programme : python rsa.py
 
-Dockerfile disponible
+## Dockerfile disponible
+
+docker build -t rsa_py .
+
+docker run -it rsa_py
+
+-------------------
 
 Fonctionne avec Python 3.10.6
 
