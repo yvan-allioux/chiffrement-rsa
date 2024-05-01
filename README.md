@@ -1,5 +1,7 @@
 # chiffrement-rsa
 
+Redéveloppèrent de tout le protocole de chiffrement RSA asymétrique en partant de 0 en python, pas d'utilisation de librairie de cryptographie externe
+
 lancer le programme : python rsa.py
 
 ## Dockerfile disponible
